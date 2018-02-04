@@ -33,8 +33,8 @@ public class ThreadNotifs extends TimerTask {
     public ThreadNotifs() {
         lastVideo = "";
         ChannelId = "UCZcrXZuopxn9NSPBFbIDF5g";
-        //twitchChannelID = "189039716";
-        twitchChannelID = "123020035";
+        twitchChannelID = "189039716";
+        //twitchChannelID = "123020035";
         isStreaming = false;
         scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube");
         url="https://www.googleapis.com/youtube/v3/search?key="+ Credentials.YOUTUBE_API_KEY+"&channelId="+ChannelId+"&part=snippet,id&order=date&maxResults=1";
