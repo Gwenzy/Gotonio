@@ -34,12 +34,12 @@ public class ThreadNotifs extends TimerTask {
         lastVideo = "";
         ChannelId = "UCZcrXZuopxn9NSPBFbIDF5g";
         twitchChannelID = "189039716";
-        //twitchChannelID = "123020035";
         isStreaming = false;
         scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube");
         url="https://www.googleapis.com/youtube/v3/search?key="+ Credentials.YOUTUBE_API_KEY+"&channelId="+ChannelId+"&part=snippet,id&order=date&maxResults=1";
         channelNotif = new ArrayList<>();
-        channelNotif.add(409742576418291732L);
+        channelNotif.add(406783026635210752L);
+        //channelNotif.add(409742576418291732L);
     }
 
     public boolean isStreaming() throws IOException {
@@ -63,7 +63,6 @@ public class ThreadNotifs extends TimerTask {
         }
         in.close();
 
-        System.out.println(response.toString());
         JSONObject json = new JSONObject(response.toString());
 
         return !json.isNull("stream");
@@ -91,7 +90,6 @@ public class ThreadNotifs extends TimerTask {
         }
         in.close();
 
-        System.out.println(response.toString());
         JSONObject json = new JSONObject(response.toString());
 
         return json.getJSONObject("stream");
@@ -105,7 +103,6 @@ public class ThreadNotifs extends TimerTask {
     }
 
     private String getLastVideoId() throws IOException {
-        System.out.println("ChannelId: "+ChannelId);
         HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
 
         con.setRequestMethod("GET");
@@ -222,8 +219,12 @@ public class ThreadNotifs extends TimerTask {
 
             }
 
+            System.out.println(isStreaming);
+            System.out.println(isStreaming());
+
+            boolean streaming = isStreaming();
             if(!isStreaming)
-                if(isStreaming()){
+                if(streaming){
                     //A envoyer un message
                     JSONObject channel = getTwitchJSON();
 
@@ -240,7 +241,8 @@ public class ThreadNotifs extends TimerTask {
                 }
 
 
-            isStreaming = isStreaming();
+
+            isStreaming = streaming;
 
 
 

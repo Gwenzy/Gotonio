@@ -93,7 +93,7 @@ public class HelpCommand extends Command {
                             content += "\n" + cmd.getPrefix() + alias;
                         }
 
-                        if(!(cmd.getPrefix()+cmd.getName()).equals(""))
+                        if(!(cmd.getName()).equals(""))
                             eb.appendField(cmd.getHelpTitle()+(!cmd.getEnabled()?"♦DÉSACTIVÉ♦":""), content, false);
 
                     }

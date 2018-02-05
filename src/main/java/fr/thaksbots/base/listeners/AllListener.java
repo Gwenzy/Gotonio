@@ -7,7 +7,7 @@ import sx.blah.discord.api.events.IListener;
 /**
  * Created by gwend on 15/11/2017.
  */
-public class AllListener extends SagiriListener implements IListener<Event> {
+public class AllListener extends ThaksbotListener implements IListener<Event> {
     public AllListener(boolean enabled){
         this.setEnabled(enabled);
     }

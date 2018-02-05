@@ -10,7 +10,7 @@ import java.util.Timer;
 /**
  * Created by gwend on 15/11/2017.
  */
-public class ReadyListener extends SagiriListener implements IListener<ReadyEvent> {
+public class ReadyListener extends ThaksbotListener implements IListener<ReadyEvent> {
     public ReadyListener(boolean enabled){
         this.setEnabled(enabled);
     }

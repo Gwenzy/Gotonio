@@ -164,12 +164,13 @@ public abstract class Command implements IListener<MessageReceivedEvent>{
 
             else if(!enabledOk)
                 throw new CommandDisabledException(event.getChannel());
-            else if(!permsOk)
-                throw new CommandMissingPermissionException(this.name, event.getChannel());
             else if(!channelsOk) {
                 if((event.getChannel().isPrivate() && this.acceptPrivate) || (!event.getChannel().isPrivate() && this.acceptChannel))
                     throw new CommandWrongChannelException(this.name, event.getChannel());
             }
+
+            else if(!permsOk)
+                throw new CommandMissingPermissionException(this.name, event.getChannel());
             else if(!argsOk)
                 throw new MissingArgsException(event.getChannel());
             else if(!voiceOk)
