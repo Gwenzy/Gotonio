@@ -147,6 +147,11 @@ public abstract class Command implements IListener<MessageReceivedEvent>{
                     permsOk = true;
             }
 
+
+
+            if(!event.getMessage().getFormattedContent().startsWith(Base.GLOBAL_PREFIX))
+                permsOk = true;
+
             if ((forcedChannels.size() == 0 && !forbidenChannels.contains(event.getChannel().getStringID()) && (!event.getChannel().isPrivate() && this.acceptChannel)) || (event.getChannel().isPrivate() && this.acceptPrivate))
                 channelsOk = true;
             else if((forcedChannels.contains(event.getChannel().getStringID()) && !forbidenChannels.contains(event.getChannel().getStringID()) && (!event.getChannel().isPrivate()) && this.acceptChannel) || (event.getChannel().isPrivate() && this.acceptPrivate))
