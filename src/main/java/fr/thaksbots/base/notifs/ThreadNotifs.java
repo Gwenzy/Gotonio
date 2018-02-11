@@ -219,8 +219,6 @@ public class ThreadNotifs extends TimerTask {
 
             }
 
-            System.out.println(isStreaming);
-            System.out.println(isStreaming());
 
             boolean streaming = isStreaming();
             if(!isStreaming)
@@ -232,7 +230,9 @@ public class ThreadNotifs extends TimerTask {
                             .withTitle("Je suis en stream !")
                             .withThumbnail(channel.getJSONObject("preview").getString("large"))
                             .withUrl(channel.getJSONObject("channel").getString("url"))
-                            .appendField(channel.getJSONObject("channel").getString("status"), channel.getJSONObject("channel").getString("description"), false);
+                            .appendField(channel.getJSONObject("channel").getString("status"), channel.getJSONObject("channel").getString("description").equals("")?"Pas de description":channel.getJSONObject("channel").getString("description"), true)
+                            .appendField("Jeu", channel.getString("game"), false)
+                            .withImage(channel.getJSONObject("preview").getString("template").replaceAll("\\{width}", ""+(Integer.parseInt(channel.getJSONObject("channel").getString("video_height")))).replaceAll("\\{height}", ""+(Integer.parseInt(channel.getJSONObject("channel").getString("video_height")))));
 
 
                     for(long l : channelNotif){

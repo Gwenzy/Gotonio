@@ -24,7 +24,7 @@ public class BlockCommand extends Command {
         this.addNeededArg("ID");
         this.setHelpContent("Blocks "+ Base.cm.getCommand("dev").getFullCommand()+" command for someone");
         this.setAcceptPrivate(true);
-        this.blocked = new ArrayList<>();
+        blocked = new ArrayList<>();
     }
 
     public static boolean isBlocked(IUser user){
@@ -35,12 +35,12 @@ public class BlockCommand extends Command {
         try {
             if(canBeExecuted(event)){
                 long ID = Long.parseLong(getArgs(event.getMessage().getFormattedContent())[0]);
-                if(this.blocked.contains(ID)) {
-                    this.blocked.remove(ID);
+                if(blocked.contains(ID)) {
+                    blocked.remove(ID);
                     event.getChannel().sendMessage("User "+ID+" is now unblocked from dev command");
                 }
                 else{
-                    this.blocked.add(ID);
+                    blocked.add(ID);
                     event.getChannel().sendMessage("User "+ID+" is now blocked from dev command");
                 }
             }

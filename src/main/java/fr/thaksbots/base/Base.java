@@ -4,9 +4,7 @@ import fr.thaksbots.base.commands.Command;
 import fr.thaksbots.base.commands.CommandManager;
 import fr.thaksbots.base.commands.admin.*;
 import fr.thaksbots.base.commands.everyone.*;
-import fr.thaksbots.base.listeners.AllListener;
-import fr.thaksbots.base.listeners.JoinListener;
-import fr.thaksbots.base.listeners.ReadyListener;
+import fr.thaksbots.base.listeners.*;
 import fr.thaksbots.base.music.MusicManager;
 import fr.thaksbots.base.notifs.ThreadNotifs;
 import sx.blah.discord.api.ClientBuilder;
@@ -17,10 +15,12 @@ import sx.blah.discord.handle.obj.IUser;
 /**
  * Created by Shû~ on 04/02/2018.
  */
+// TODO: BAN/KICK
+
 public class Base {
     public static IDiscordClient bot, test, logged;
     public static CommandManager cm;
-    public static boolean BOT_LOG = true;
+    public static boolean BOT_LOG = false;
     public static final String GLOBAL_PREFIX = "!";
     public static ThreadNotifs tn;
     public static void main(String[] args){
@@ -37,6 +37,9 @@ public class Base {
         cm.registerCommand(new EnableCommand("enable", GLOBAL_PREFIX, true));
         cm.registerCommand(new StreamCommand("stream", GLOBAL_PREFIX, true));
         cm.registerCommand(new LogoutCommand("logout", GLOBAL_PREFIX, true));
+        cm.registerCommand(new MuteCommand("mute", GLOBAL_PREFIX, true));
+        cm.registerCommand(new KickCommand("kick", GLOBAL_PREFIX, true));
+        cm.registerCommand(new BanCommand("ban", GLOBAL_PREFIX, true));
 
 
         cm.registerCommand(new JoinCommand("join", GLOBAL_PREFIX, true));
@@ -71,6 +74,8 @@ public class Base {
         cb.registerListener(new AllListener(true));
         cb.registerListener(new ReadyListener(true));
         cb.registerListener(new JoinListener(true));
+        cb.registerListener(new LeaveListener(true));
+        cb.registerListener(new MessageListener(true));
 
 
         if(login)
